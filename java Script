@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>buttons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+    #display {
+      width: 200px;
+      height: 200px;
+      background-color: #ccc;
+      margin: 20px auto;
+      border-radius: 10px;
+      transition: width 0.3s, height 0.3s, border-radius 0.3s;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .light {
+      background-color: #fff;
+    }
+    .dark {
+      
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  
+  <button class="btn" id="increaseBtn">click</button>
+  <button class="btn" id="resetBtn">Reset</button>
+  <button class="btn" id="redBtn">Red</button>
+  <button class="btn" id="blueBtn">Blue</button>
+ 
+  <div id="display"></div>
+
+  <script>
+    let count = 0;
+    let isDarkMode = false;
+
+    const display = document.getElementById('display');
+    const increaseBtn = document.getElementById('increaseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const redBtn = document.getElementById('redBtn');
+    const blueBtn = document.getElementById('blueBtn');
+    
+
+    function updateDisplay() {
+      display.innerHTML = count;
+      if (count % 5 === 0) {
+        display.style.borderRadius = '50%';
+      } else if (count % 2 === 0) {
+        display.style.borderRadius = '0';
+      } else {
+        display.style.borderRadius = '10px';
+      }
+    }
+
+    function increaseCount() {
+      count++;
+      updateDisplay();
+    }
+
+    function resetCount() {
+      count = 0;
+      updateDisplay();
+    }
+
+    function changeColor(color) {
+      display.style.backgroundColor = color;
+    }
+
+  
+    increaseBtn.addEventListener('click', increaseCount);
+    resetBtn.addEventListener('click', resetCount);
+    redBtn.addEventListener('click', () => changeColor('red'));
+    blueBtn.addEventListener('click', () => changeColor('blue'));
+    
+
+    updateDisplay();
+  </script>
+</body>
+</html>
